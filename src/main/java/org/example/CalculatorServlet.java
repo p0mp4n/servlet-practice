@@ -11,15 +11,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 @WebServlet("/calculate")
-public class CalculatorServlet implements Servlet {
+public class CalculatorServlet extends GenericServlet {
     private static final Logger logger = LoggerFactory.getLogger(CalculatorServlet.class);
-
-    private ServletConfig servletConfig;
-    @Override
-    public void init(ServletConfig config) throws ServletException {
-        logger.info("init");
-        this.servletConfig = config;
-    }
 
     @Override
     public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
@@ -32,20 +25,5 @@ public class CalculatorServlet implements Servlet {
 
         PrintWriter writer = res.getWriter();
         writer.println(result);
-    }
-
-    @Override
-    public void destroy() {
-        // resource release
-    }
-
-    @Override
-    public ServletConfig getServletConfig() {
-        return this.servletConfig;
-    }
-
-    @Override
-    public String getServletInfo() {
-        return null;
     }
 }
